@@ -1,0 +1,18 @@
+#!/bin/bash
+FILE="ftp://ftp-trace.ncbi.nlm.nih.gov/giab/ftp/data/AshkenazimTrio/analysis/ BilkentUni_mrCaNaVaR_GRCh38_07242019/ AJtrio_TARDIS.bilkentuniv.072319.vcf.gz"
+f=$(basename -- "$FILE")
+echo "$f"
+if [[ $# -ne 1 ]]; then
+    echo "Illegal number of parameters"
+fi
+if [[ $f != *.gz ]]; then
+    echo "The extention is wrong"
+fi
+curl -o ftp://ftp-trace.ncbi.nlm.nih.gov/giab/ftp/data/AshkenazimTrio/analysis/ BilkentUni_mrCaNaVaR_GRCh38_07242019/ AJtrio_TARDIS.bilkentuniv.072319.vcf.gz
+if [ -f "$FILE" ]; then
+gunzip "$FILE"
+else 
+	echo "gunzip is not in your path" 
+	exit
+fi
+
